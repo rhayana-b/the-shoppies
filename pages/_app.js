@@ -1,4 +1,4 @@
-import "../utils/css/tailwind.css";
+import '../utils/css/tailwind.css';
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
