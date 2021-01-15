@@ -1,13 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-const MovieResults = ({ searchResults }) => {
-  const [nominationList, setNominationList] = useState([]);
-  console.log(nominationList);
-
+const MovieResults = ({ searchResults, onNomination }) => {
   const handleNominations = (movie) => {
-    setNominationList([...nominationList, `${movie.Title} (${movie.Year})`]);
+    onNomination(movie);
   };
 
   return (

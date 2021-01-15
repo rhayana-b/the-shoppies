@@ -6,6 +6,7 @@ import api from '../services/api';
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState([]);
+  const [nominationList, setNominationList] = useState([]);
 
   const getResults = (searchInput) => {
     api
@@ -20,6 +21,14 @@ export default function Home() {
       });
   };
 
+  const getNominations = (movie) => {
+    setNominationList([...nominationList, `${movie.Title} (${movie.Year})`]);
+  };
+
+  const handleDelete = (movie) => {
+    setNominationList(nominationList.filter((item) => item !== movie));
+  };
+
   return (
     <div className="bg-purple-50 h-full w-full flex flex-col py-10 px-10">
       <div className="flex flex-col">
@@ -30,8 +39,14 @@ export default function Home() {
           <MovieSearch onSearch={getResults} />
         </div>
         <div className="flex justify-evenly p-4 mb-10">
-          <MovieResults searchResults={searchResults} />
-          <MovieNominations />
+          <MovieResults
+            searchResults={searchResults}
+            onNomination={getNominations}
+          />
+          <MovieNominations
+            nominationList={nominationList}
+            onDelete={handleDelete}
+          />
         </div>
       </div>
     </div>
