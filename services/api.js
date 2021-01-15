@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://www.omdbapi.com/?i=tt3896198&apikey=3454bc81',
+  baseURL: 'http://www.omdbapi.com',
 });
 
 export default api;
