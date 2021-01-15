@@ -22,11 +22,13 @@ export default function Home() {
   };
 
   const getNominations = (movie) => {
-    setNominationList([...nominationList, `${movie.Title} (${movie.Year})`]);
+    setNominationList([...nominationList, movie]);
   };
 
   const handleDelete = (movie) => {
-    setNominationList(nominationList.filter((item) => item !== movie));
+    setNominationList(
+      nominationList.filter((item) => item.imdbID !== movie.imdbID)
+    );
   };
 
   return (
@@ -42,6 +44,7 @@ export default function Home() {
           <MovieResults
             searchResults={searchResults}
             onNomination={getNominations}
+            nominationList={nominationList}
           />
           <MovieNominations
             nominationList={nominationList}
