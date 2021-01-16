@@ -9,20 +9,20 @@ export default function Home() {
   const [nominationList, setNominationList] = useState([]);
 
   const getResults = (searchInput) => {
-    api
-      .get(
-        `?apikey=${process.env.NEXT_PUBLIC_OMDB_KEY}&s=${searchInput.replace(
-          ' ',
-          '+'
-        )}`
-      )
-      .then((res) => {
-        setSearchResults(res.data);
-      });
+    const fetchURL = `?apikey=${
+      process.env.NEXT_PUBLIC_OMDB_KEY
+    }&type=movie&s=${searchInput.replace(' ', '+')}`;
+    api.get(fetchURL).then((res) => {
+      setSearchResults(res.data);
+    });
   };
 
   const getNominations = (movie) => {
-    setNominationList([...nominationList, movie]);
+    if (nominationList.length < 5) {
+      setNominationList([...nominationList, movie]);
+    } else {
+      alert('5 movies already added');
+    }
   };
 
   const handleDelete = (movie) => {

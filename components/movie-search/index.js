@@ -5,29 +5,28 @@ import { useState } from 'react';
 const MovieSearch = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState('');
 
-  const onSubmit = (event) => {
-    onSearch(searchInput);
-    event.preventDefault();
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value);
+    onSearch(e.target.value);
+    e.preventDefault();
   };
 
   return (
-    <div className="flex flex-col p-6 mb-10 w-4/5 bg-gray-50 border rounded-md">
+    <div className="flex flex-col p-6 mb-10 bg-gray-50 border rounded-md">
       <label htmlFor="movie-search" className="font-bold mb-2">
         Movie Title
       </label>
       <form>
+        <FontAwesomeIcon icon={faSearch} className="mx-2" />
         <input
-          className="bg-gray-50 border rounded-sm px-2"
+          className="bg-gray-50 border rounded-sm px-2 focus:ring-1 focus:ring-purple-300"
           id="movie-search"
           name="movie-search"
           type="search"
           placeholder="Search..."
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => handleSearch(e)}
         />
-        <button type="button" onClick={onSubmit}>
-          <FontAwesomeIcon icon={faSearch} className="mx-2" />
-        </button>
       </form>
     </div>
   );

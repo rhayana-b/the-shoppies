@@ -10,11 +10,11 @@ const MovieNominations = ({ nominationList, onDelete }) => (
           className="border rounded flex justify-between items-center w-full my-2 h-14"
           key={movie.imdbID}
         >
-          <li className="mx-2 pl-2 h-8 flex items-center">{movie.Title}</li>
+          <li className="mx-2 pl-2 h-8 flex items-center">{`${movie.Title} (${movie.Year})`}</li>
           <button
             type="button"
             title="Remove this movie from your list"
-            className="rounded-lg flex flex-col justify-center items-center p-1 mx-2 h-8 w-8 bg-purple-700 disabled:transparent hover:bg-purple-900"
+            className="rounded-lg flex flex-col justify-center items-center p-1 mx-2 h-8 w-8 bg-purple-700 hover:bg-purple-900 transform hover:scale-110 motion-reduce:transform-none"
             onClick={() => onDelete(movie)}
           >
             <FontAwesomeIcon
