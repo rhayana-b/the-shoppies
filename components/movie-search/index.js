@@ -9,7 +9,6 @@ const MovieSearch = ({ onSearch }) => {
   const handleSearch = (e) => {
     setSearchInput(e.target.value);
     onSearch(e.target.value);
-    // e.preventDefault();
   };
 
   return (

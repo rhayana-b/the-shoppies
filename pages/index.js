@@ -19,8 +19,6 @@ export default function Home() {
     if (nominationList.length === 5) {
       setShowModal(true);
     }
-    console.log(nominationList);
-
     localStorage.setItem('my-movie-list', JSON.stringify(nominationList));
   }, [nominationList?.length]);
 
@@ -28,7 +26,7 @@ export default function Home() {
     setSearchedFor(searchInput);
     const fetchURL = `?apikey=${
       process.env.NEXT_PUBLIC_OMDB_KEY
-    }&type=movie&s=${searchInput.replace(' ', '+')}`;
+    }&type=movie&s=${searchInput.split(' ').join('+')}`;
     api.get(fetchURL).then((res) => {
       setSearchResults(res.data);
     });
@@ -41,6 +39,9 @@ export default function Home() {
       setShowModal(true);
     }
   };
+
+  const checkIfNominated = (id) =>
+    nominationList?.some((item) => item.imdbID === id);
 
   const handleDelete = (movie) => {
     setNominationList(
@@ -68,7 +69,7 @@ export default function Home() {
             <MovieResults
               searchResults={searchResults}
               onNomination={getNominations}
-              nominationList={nominationList}
+              checkIfNominated={checkIfNominated}
               searchedFor={searchedFor}
             />
             <MovieNominations

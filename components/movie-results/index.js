@@ -5,7 +5,7 @@ const MovieResults = ({
   searchResults,
   searchedFor,
   onNomination,
-  nominationList,
+  checkIfNominated,
 }) =>
   searchedFor && (
     <div className="flex flex-col items-center px-2 py-6 lg:w-2/4 my-2 lg:mr-8 bg-gray-50 border rounded-md">
@@ -14,9 +14,7 @@ const MovieResults = ({
       </h2>
       <ul className="w-full px-4">
         {searchResults.Search?.map((movie) => {
-          const alreadyNominated = nominationList.some(
-            (item) => item.imdbID === movie.imdbID
-          );
+          const alreadyNominated = checkIfNominated(movie.imdbID);
           return (
             <div
               className="border rounded flex justify-between items-center w-full my-2 h-14"
@@ -36,9 +34,7 @@ const MovieResults = ({
                     : 'rounded-lg flex flex-col justify-center items-center p-1 mx-2 h-8 w-8 bg-gray-200 cursor-not-allowed'
                 }
                 onClick={() => onNomination(movie)}
-                disabled={nominationList.some(
-                  (item) => item.imdbID === movie.imdbID
-                )}
+                disabled={alreadyNominated}
               >
                 <FontAwesomeIcon
                   icon={faTrophy}
