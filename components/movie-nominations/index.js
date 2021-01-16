@@ -1,9 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
 
 const MovieNominations = ({ nominationList, onDelete }) =>
-  nominationList.length > 0 && (
+  nominationList?.length > 0 ? (
     <div className="flex flex-col items-center my-2 px-2 py-6 lg:w-2/4 lg:ml-8 bg-gray-50 border rounded-md">
       <h2 className="mb-4 font-bold text-lg text-gray-900 uppercase">
         Nominations
@@ -32,6 +31,6 @@ const MovieNominations = ({ nominationList, onDelete }) =>
         ))}
       </ul>
     </div>
-  );
+  ) : null;
 
 export default MovieNominations;
