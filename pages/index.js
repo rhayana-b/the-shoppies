@@ -10,6 +10,7 @@ export default function Home() {
   const [nominationList, setNominationList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [searchedFor, setSearchedFor] = useState('');
+  const [loadindResults, setLoadingResults] = useState(false);
 
   useEffect(() => {
     setNominationList(JSON.parse(localStorage.getItem('my-movie-list')));
@@ -24,10 +25,12 @@ export default function Home() {
 
   const getResults = (searchInput) => {
     setSearchedFor(searchInput);
+    setLoadingResults(true);
     const fetchURL = `?apikey=${
       process.env.NEXT_PUBLIC_OMDB_KEY
     }&type=movie&s=${searchInput.split(' ').join('+')}`;
     api.get(fetchURL).then((res) => {
+      setLoadingResults(false);
       setSearchResults(res.data);
     });
   };
@@ -71,6 +74,7 @@ export default function Home() {
               onNomination={getNominations}
               checkIfNominated={checkIfNominated}
               searchedFor={searchedFor}
+              loading={loadindResults}
             />
             <MovieNominations
               nominationList={nominationList}
