@@ -8,8 +8,10 @@ const MovieResults = ({
   nominationList,
 }) =>
   searchedFor && (
-    <div className="flex flex-col items-center px-2 py-6 w-2/4 mr-8 bg-gray-50 border rounded-md">
-      <h2 className="mb-4 font-bold text-lg">Results for "{searchedFor}"</h2>
+    <div className="flex flex-col items-center px-2 py-6 lg:w-2/4 my-2 lg:mr-8 bg-gray-50 border rounded-md">
+      <h2 className="mb-4 font-bold text-lg text-gray-900 uppercase">
+        Results for "{searchedFor}"
+      </h2>
       <ul className="w-full px-4">
         {searchResults.Search?.map((movie) => {
           const alreadyNominated = nominationList.some(

@@ -42,16 +42,22 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="bg-purple-50 h-full w-full flex flex-col">
-        <div className="flex flex-col h-screen mx-28 my-10">
+    <div className="bg-purple-50 min-h-screen">
+      <div className="flex flex-col bg-purple-50 w-full h-full">
+        <div className="flex flex-col h-full mx-4 md:mx-28 my-10">
           <div className="flex justify-center py-2 mb-10">
-            <h1 className="text-4xl font-bold">The Shoppies</h1>
+            <h1 className="text-4xl font-bold text-gray-900">The Shoppies</h1>
           </div>
           <div className="flex flex-col items-center">
             <MovieSearch onSearch={getResults} />
           </div>
-          <div className="flex justify-between py-4 mb-10 w-full">
+          <div
+            className={
+              nominationList.length > 0
+                ? ' flex flex-col lg:flex-row justify-center py-4 mb-10 w-full'
+                : 'flex flex-col lg:flex-row justify-between py-4 mb-10 w-full'
+            }
+          >
             <MovieResults
               searchResults={searchResults}
               onNomination={getNominations}
@@ -70,6 +76,6 @@ export default function Home() {
         onClose={() => setShowModal(false)}
         alertMessage="You have nominated 5 movies. If you wish to change your list for nominations, you can remove movies from the list to add others from your search. Thank you :)"
       />
-    </>
+    </div>
   );
 }
