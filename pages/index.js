@@ -12,10 +12,17 @@ export default function Home() {
   const [searchedFor, setSearchedFor] = useState('');
 
   useEffect(() => {
+    setNominationList(JSON.parse(localStorage.getItem('my-movie-list')));
+  }, []);
+
+  useEffect(() => {
     if (nominationList.length === 5) {
       setShowModal(true);
     }
-  }, [nominationList.length]);
+    console.log(nominationList);
+
+    localStorage.setItem('my-movie-list', JSON.stringify(nominationList));
+  }, [nominationList?.length]);
 
   const getResults = (searchInput) => {
     setSearchedFor(searchInput);
