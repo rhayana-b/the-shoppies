@@ -13,7 +13,9 @@ export default function Home() {
   const [loadindResults, setLoadingResults] = useState(false);
 
   useEffect(() => {
-    setNominationList(JSON.parse(localStorage.getItem('my-movie-list')));
+    if (nominationList.length > 0) {
+      setNominationList(JSON.parse(localStorage.getItem('my-movie-list')));
+    }
   }, []);
 
   useEffect(() => {
